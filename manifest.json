@@ -1,21 +1,26 @@
 {
   "name": "Extension Starter",
   "version": "0.0.1",
-  "author": "https://danleyb2.online",
+  "author": "https://sifhic.com",
   "description": "A starter project for creating browser extensions",
   "permissions": [
     "https://*/*",
-    "declarativeContent"
+    "declarativeContent",
+    "contextMenus",
+    "storage",
+    "tabs"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://*/*"
+        "*://*/*"
       ],
       "run_at": "document_idle",
       "js": [
-        "script.js"
-      ]
+        "/webcomponents-bundle.js",
+        "/content.js"
+      ],
+      "css": ["/content.css"]
     }
   ],
   "icons": {
@@ -26,17 +31,18 @@
 
   },
   "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
+    "page": "background.html"
   },
   "browser_action": {
     "default_icon": "img/get_started32.png",
-    "default_popup": "/html/popup.html"
+    "default_popup": "/html/index.html"
   },
   "manifest_version": 2,
   "web_accessible_resources": [
-    "/img/*"
-  ]
+    "/img/*",
+    "/fonts/*"
+  ],
+  "externally_connectable": {
+    "matches": ["*://*.sifhic.com/*"]
+  }
 }
